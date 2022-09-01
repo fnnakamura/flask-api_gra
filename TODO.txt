@@ -1,0 +1,8 @@
+{
+    "refactor layers": {
+        db_connection: "isolate H2",
+        data: "contract",
+        domain: "business rules",
+        controllers: "add remaining CRUD operations"
+    }
+} 
