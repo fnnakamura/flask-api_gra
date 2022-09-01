@@ -6,19 +6,19 @@ A Flask REST API designed to serve the Golden Raspberry Awards.
 # Requirements
 
 - Python >= 3.7
-- Recommended: pipenv
+- Recommended: `pipenv`
 - A JDK > 8 installed (for H2 mem database utilization)
 
 # Run
 
 - Install missing packages from pipfile:
-    $ pipenv install
+    `$ pipenv install`
 
 - Open pipenv environment:
-    $ pipenv shell
+    `$ pipenv shell`
 
 - Run the application with required .csv file as parameter:
-    $ python3 src/app.py <movielist.csv>
+    `$ python3 src/app.py <movielist.csv>`
 
 # What Do I Get?
 
