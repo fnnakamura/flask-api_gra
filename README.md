@@ -22,17 +22,17 @@ A Flask REST API designed to serve the Golden Raspberry Awards.
 
 # What Do I Get?
 
-- localhost:5000
- - page with the full list of movies
-- localhost:5000/add
- - form to add new movie
-- localhost:5000/api/movies
-- localhost:5000/api/movies/<id>
- - endpoint to query movies (all or by id)
-- localhost:5000/api/producers
- - endpoint to query producers
-- localhost:5000/api/awards <<< <strong>THIS IS WHAT YOU SHOULD BE LOOKING FOR :)</strong>
- - endpoint to query awards
+- `localhost:5000`
+    - page with the full list of movies
+- `localhost:5000/add`
+    - form to add new movie
+- `localhost:5000/api/movies`
+- `localhost:5000/api/movies/id`
+    - endpoint to query movies (all or by id)
+- `localhost:5000/api/producers`
+    - endpoint to query producers
+- `localhost:5000/api/awards` <<< **THIS IS WHAT YOU SHOULD BE LOOKING FOR :)**
+    - endpoint to query awards
 # To Be Done
 
     {
