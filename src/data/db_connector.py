@@ -117,8 +117,8 @@ class dbConnector():
 
     def get_award_intervals(self):
         producers_list = self._get_all_producers()
-        # producers_list['NakamuraMax'] = [1, 9, 10, 11, 10000]
-        # producers_list['NakamuraMin'] = [1, 9, 10, 11, 10000]
+        #producers_list['NakamuraMax'] = [1, 9, 10, 11, 10000, 19989]
+        #producers_list['NakamuraMin'] = [1, 9, 10, 11, 10000, 19989]
         award_list = {}
         fastest_winners = []
         longest_winners = []
@@ -128,29 +128,35 @@ class dbConnector():
                 award_list[producer] = sorted(producers_list[producer])
 
         for producer in award_list.keys():
-            interval = max(award_list[producer]) - min(award_list[producer])
-            if len(longest_winners) and interval > longest_winners[0]['interval']:
-                longest_winners.clear()
-                longest_winners.append({
-                    'producer': producer,
-                    'interval': interval,
-                    'previousWin': min(award_list[producer]),
-                    'followingWin': max(award_list[producer])
-                })
-            elif len(longest_winners) and interval == longest_winners[0]['interval']:
-                longest_winners.append({
-                    'producer': producer,
-                    'interval': interval,
-                    'previousWin': min(award_list[producer]),
-                    'followingWin': max(award_list[producer])
-                })
-            elif len(longest_winners) == 0:
-                longest_winners.append({
-                    'producer': producer,
-                    'interval': interval,
-                    'previousWin': min(award_list[producer]),
-                    'followingWin': max(award_list[producer])
-                })
+            max_interval = 0
+            for pos, year in enumerate(award_list[producer][:-1]):
+                interval = award_list[producer][pos+1] - year
+                if interval >= max_interval:
+                    max_interval = interval
+                    previousWin = year
+                    followingWin = award_list[producer][pos+1]
+                if len(longest_winners) and max_interval > longest_winners[0]['interval']:
+                    longest_winners.clear()
+                    longest_winners.append({
+                        'producer': producer,
+                        'interval': max_interval,
+                        'previousWin': previousWin,
+                        'followingWin': followingWin
+                    })
+                elif len(longest_winners) and interval == longest_winners[0]['interval']:
+                    longest_winners.append({
+                        'producer': producer,
+                        'interval': max_interval,
+                        'previousWin': previousWin,
+                        'followingWin': followingWin
+                    })
+                elif len(longest_winners) == 0:
+                    longest_winners.append({
+                        'producer': producer,
+                        'interval': max_interval,
+                        'previousWin': previousWin,
+                        'followingWin': followingWin
+                    })
 
         for producer in award_list.keys():
             min_interval = max(
